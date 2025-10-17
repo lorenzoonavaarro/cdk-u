@@ -29,10 +29,14 @@ export class CdkStack extends cdk.Stack {
     });
 
     // L2 Construct
-    new Bucket(this, 'MyL2Bucket', {
+    const myL2Bucket = new Bucket(this, 'MyL2Bucket', {
       lifecycleRules: [{
         expiration: cdk.Duration.days(2)
       }]
+    });
+
+    new cdk.CfnOutput(this, 'L2BucketName', {
+      value: myL2Bucket.bucketName
     });
 
     // Calling L3 Construct
