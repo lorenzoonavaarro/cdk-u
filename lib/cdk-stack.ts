@@ -35,6 +35,7 @@ export class CdkStack extends cdk.Stack {
       }]
     });
 
+    // CDK output sample - L2 bucket name 
     new cdk.CfnOutput(this, 'L2BucketName', {
       value: myL2Bucket.bucketName
     });
