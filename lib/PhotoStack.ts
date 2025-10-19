@@ -14,8 +14,10 @@ export class PhotoStack extends Stack{
             bucketName: `photos-bucket-${this.stackSuffix}`
         });
 
-        new CfnOutput(this, 'BucketName', {
-            value: myBucket.bucketName
+        // Output for cross stack referencing
+        new CfnOutput(this, 'photos-bucket', {
+            value: myBucket.bucketArn,
+            exportName: 'photos-bucket'
         })
     }
 
