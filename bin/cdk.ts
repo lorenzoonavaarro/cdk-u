@@ -5,5 +5,7 @@ import { PhotoStack } from "../lib/PhotoStack";
 import { PhotoHandlerStack } from "../lib/PhotoHandlerStack";
 
 const app = new cdk.App();
-new PhotoStack(app, 'PhotoStack');
-new PhotoHandlerStack(app, 'PhotosHandlerStack');
+const photoStack = new PhotoStack(app, 'PhotoStack');
+new PhotoHandlerStack(app, 'PhotosHandlerStack', {
+    targetBucketArn: photoStack.photosBucketArn
+});

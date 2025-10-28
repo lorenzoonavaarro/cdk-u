@@ -4,6 +4,7 @@ import { Construct } from "constructs";
 
 export class PhotoStack extends Stack{
     private stackSuffix: string;
+    public readonly photosBucketArn: string;
 
     constructor(scope: Construct, id: string, props?: StackProps){
         super(scope, id, props);
@@ -13,12 +14,8 @@ export class PhotoStack extends Stack{
         const myBucket = new Bucket(this, 'PhotoBucket2', {
             bucketName: `photos-bucket-${this.stackSuffix}`
         });
+        this.photosBucketArn = myBucket.bucketArn;
 
-        // Output for cross stack referencing
-        new CfnOutput(this, 'photos-bucket', {
-            value: myBucket.bucketArn,
-            exportName: 'photos-bucket'
-        })
     }
 
     private initializeSuffix() {
